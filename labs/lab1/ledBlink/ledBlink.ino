@@ -1,3 +1,5 @@
+// makes the on-board LED blink in a certain manner
+
 void setup() {
   // put your setup code here, to run once:
   pinMode(LED_BUILTIN, OUTPUT);

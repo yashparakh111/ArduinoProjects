@@ -1,3 +1,4 @@
+// dims the led when button is pressed
 const int buttonPin = 2;    // pin number for button
 const int ledPin = 13;      // pin number for built_int LED
 
