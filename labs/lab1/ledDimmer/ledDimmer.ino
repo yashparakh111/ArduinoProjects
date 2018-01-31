@@ -25,8 +25,8 @@ void loop() {
   buttonState = digitalRead(buttonPin);
 
   if (buttonState == HIGH){
-    dimmer(100, 100);
+    dimmer(10, 100);
   } else {
-    dimmer(100, 1);
+    dimmer(10, 50);
   }
 }

@@ -1,0 +1,2 @@
+1) a. Setup: For one time initialization and variable declaractions.
+   b. Loop: Since the code runs in a linear manner, it is necessary to loop the code back to a starting position. The easiest thing to do is to start to pick a certain location and use that location over and over again.
