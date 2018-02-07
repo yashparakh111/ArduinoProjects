@@ -14,8 +14,8 @@ void success(void);
 #if STEP_NUMBER == 1
 
 /*
- * For step 1, use the LED to signal which init is failing
- */
+   For step 1, use the LED to signal which init is failing
+*/
 
 void sensor_init(void);
 void actuator_init(void);
@@ -23,97 +23,117 @@ void wifi_init(void);
 
 void sensor_init(void)
 {
-  if(check_failure(3))
+  if (check_failure(3))
   {
-    //your code here
-
+    // your code here
+    // Serial.println("sensor_init");
+    for(int x = 0; x < 1; x++){
+      digitalWrite(13, HIGH);
+      delay(400);
+      digitalWrite(13, LOW);
+      delay(400);
+    }
     failure();
   }
 }
 
 void actuator_init(void)
 {
-  if(check_failure(5))
+  if (check_failure(5))
   {
-    //your code here
-
+    // your code here
+    // Serial.println("actuator_init");
+    for(int x = 0; x < 2; x++){
+      digitalWrite(13, HIGH);
+      delay(400);
+      digitalWrite(13, LOW);
+      delay(400);
+    }
     failure();
   }
 }
 
 void wifi_init(void)
 {
-  if(check_failure(7))
+  if (check_failure(7))
   {
-    //your code here
-
+    // your code here
+    // Serial.println("wifi_init");
+    for(int x = 0; x < 3; x++){
+      digitalWrite(13, HIGH);
+      delay(400);
+      digitalWrite(13, LOW);
+      delay(400);
+    }
     failure();
   }
 }
 
 void setup(void)
 {
+  pinMode(LED_BUILTIN, OUTPUT);
+  Serial.begin(9600);
   sensor_init();
   actuator_init();
-  wifi_init(); 
+  wifi_init();
 }
 
-void loop(void){
-  success();  
+void loop(void) {
+  success();
 }
 
 #elif STEP_NUMBER == 2
 
 /*
- * For step 2, use the serial monitor to debug. 
- * TOOLS > SERIAL MONITOR
- */
+   For step 2, use the serial monitor to debug.
+   TOOLS > SERIAL MONITOR
+*/
 
 void setup(void)
 {
-    Serial.begin(9600);
-    Serial.println("Serial monitor is working!");
+  Serial.begin(9600);
+  Serial.println("Serial monitor is working!");
 }
 
 void loop(void)
 {
-  for(int i = 5; i < 100; i++)
+  for (int i = 5; i < 100; i++)
+  {
+    if (check_failure(i))
     {
-      if(check_failure(i))
-      {
-        //insert your code here
-
-        failure();
-      }
+      //insert your code here
+      Serial.println(i);
+      failure();
     }
-    success();
+  }
+  success();
 }
 
 #elif STEP_NUMBER == 3
 
 /*
- * For step three, use the Analog Discovery to see the effects of the serial monitor
- * Now think of a way to fix the problem.
- */
+   For step three, use the Analog Discovery to see the effects of the serial monitor
+   Now think of a way to fix the problem.
+*/
 
 void setup(void)
 {
-    Serial.begin(9600);
-    Serial.println("Serial monitor is working!");
+  Serial.begin(9600);
+  Serial.println("Serial monitor is working!");
 }
 
 void loop(void)
 {
-    int num;
-    for(int i = 0; i < 500; i++)
-    {
-        num = psuedo_random();
-        digitalWrite(13, HIGH);
-        num = psuedo_random();
-        Serial.println(num);
-        digitalWrite(13, LOW);
-    }
-    for(;;){}
+  int num;
+  for (int i = 0; i < 500; i++)
+  {
+    num = psuedo_random();
+    digitalWrite(13, HIGH);
+    num = psuedo_random();
+    Serial.println(num);
+    digitalWrite(13, LOW);
+  }
+  for (;;) {}
 }
 
 #endif
@@ -122,11 +142,11 @@ void loop(void)
  ********************************************************************************
  ********               DO NOT EDIT BELOW THIS LINE                      ********
  ********************************************************************************
- */
+*/
 
 void success(void)
 {
-  for(;;)
+  for (;;)
   {
     digitalWrite(13, HIGH);
     delay(500);
@@ -137,7 +157,7 @@ void success(void)
 
 void failure(void)
 {
-  for(;;)
+  for (;;)
   {
     digitalWrite(13, HIGH);
   }
@@ -145,7 +165,7 @@ void failure(void)
 
 bool check_failure(int num)
 {
-  if(!(psuedo_random() % num))
+  if (!(psuedo_random() % num))
   {
     return true;
   }
